@@ -15,6 +15,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebApi.Data.Models",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebApi.Data.Seeder", "Data\FitnessWebApi.Data.Seeder\FitnessWebApi.Data.Seeder.csproj", "{04D45023-B4B6-44B1-B5D6-811EAE291257}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{841E53BF-197B-4462-9252-32F80DE0CFC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InputModels", "InputModels", "{F6321719-DE10-4B36-AC82-0390AA905F11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModels", "ViewModels", "{8FC9914E-382B-4818-BD62-7A171A7DE39C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebApi.Services.Data", "Services\FitnessWebApi.Services.Data\FitnessWebApi.Services.Data.csproj", "{A07AE6DA-5F41-407D-A9B9-0E1229D9A9C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebApi.InputModels.Api", "InputModels\FitnessWebApi.InputModels\FitnessWebApi.InputModels.Api.csproj", "{F4D36FD4-4D51-42E6-A092-9AA622B5085C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebApi.ViewModels.Api", "ViewModels\FitnessWebApi.ViewModels.Api\FitnessWebApi.ViewModels.Api.csproj", "{6104C4CB-79EA-426C-9E09-D0D401835B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessWebApi.Services.Mappings", "Services\FitnessWebApi.Services.Mappings\FitnessWebApi.Services.Mappings.csproj", "{43FF0BF6-1F04-4183-A2D3-0178CE2537DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +55,22 @@ Global
 		{04D45023-B4B6-44B1-B5D6-811EAE291257}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04D45023-B4B6-44B1-B5D6-811EAE291257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04D45023-B4B6-44B1-B5D6-811EAE291257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A07AE6DA-5F41-407D-A9B9-0E1229D9A9C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A07AE6DA-5F41-407D-A9B9-0E1229D9A9C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A07AE6DA-5F41-407D-A9B9-0E1229D9A9C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A07AE6DA-5F41-407D-A9B9-0E1229D9A9C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D36FD4-4D51-42E6-A092-9AA622B5085C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D36FD4-4D51-42E6-A092-9AA622B5085C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D36FD4-4D51-42E6-A092-9AA622B5085C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D36FD4-4D51-42E6-A092-9AA622B5085C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6104C4CB-79EA-426C-9E09-D0D401835B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6104C4CB-79EA-426C-9E09-D0D401835B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6104C4CB-79EA-426C-9E09-D0D401835B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6104C4CB-79EA-426C-9E09-D0D401835B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FF0BF6-1F04-4183-A2D3-0178CE2537DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FF0BF6-1F04-4183-A2D3-0178CE2537DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FF0BF6-1F04-4183-A2D3-0178CE2537DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FF0BF6-1F04-4183-A2D3-0178CE2537DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +80,10 @@ Global
 		{81D28ADD-97BD-4428-B34F-0EB5D628CCA8} = {1D0C81A3-DC86-4181-9188-A66566407BEF}
 		{A8DB53E7-DC66-4124-844C-9484E3EC6A96} = {1D0C81A3-DC86-4181-9188-A66566407BEF}
 		{04D45023-B4B6-44B1-B5D6-811EAE291257} = {1D0C81A3-DC86-4181-9188-A66566407BEF}
+		{A07AE6DA-5F41-407D-A9B9-0E1229D9A9C7} = {841E53BF-197B-4462-9252-32F80DE0CFC0}
+		{F4D36FD4-4D51-42E6-A092-9AA622B5085C} = {F6321719-DE10-4B36-AC82-0390AA905F11}
+		{6104C4CB-79EA-426C-9E09-D0D401835B6B} = {8FC9914E-382B-4818-BD62-7A171A7DE39C}
+		{43FF0BF6-1F04-4183-A2D3-0178CE2537DE} = {841E53BF-197B-4462-9252-32F80DE0CFC0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF1195E8-A6AB-4078-922F-C53A10CA13D6}

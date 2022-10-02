@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\FitnessWebApi.Data.Models\FitnessWebApi.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\FitnessWebApi.Data\FitnessWebApi.Data.csproj" />
+    <ProjectReference Include="..\..\InputModels\FitnessWebApi.InputModels\FitnessWebApi.InputModels.Api.csproj" />
+    <ProjectReference Include="..\..\ViewModels\FitnessWebApi.ViewModels.Api\FitnessWebApi.ViewModels.Api.csproj" />
+  </ItemGroup>
+
+</Project>
