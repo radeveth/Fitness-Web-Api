@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessWebApi.Data.Migrations
 {
     [DbContext(typeof(FitnessWebApiDbContext))]
-    [Migration("20221001225232_InitialSetUp")]
+    [Migration("20221002120525_InitialSetUp")]
     partial class InitialSetUp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -27,9 +27,10 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                JsonAppSettings appSettings = JsonConvert.DeserializeObject<JsonAppSettings>(File.ReadAllText(@"appsettings.json"));
-    
-                optionsBuilder.UseSqlServer(appSettings.ConnectionString);
+                // JsonAppSettings appSettings = JsonConvert.DeserializeObject<JsonAppSettings>(File.ReadAllText(@"appsettings.json"));
+                // optionsBuilder.UseSqlServer(appSettings.ConnectionString);
+
+                optionsBuilder.UseSqlServer("Server=DESKTOP-PSOL09R;Database=FitnessWebApi;Trusted_Connection=True;");
             }
 
             base.OnConfiguring(optionsBuilder);
@@ -41,12 +42,12 @@
                 .HasMany(b => b.Exercises)
                 .WithOne(e => e.BodyPart)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
             modelBuilder.Entity<TargetMuscle>()
                 .HasMany(t => t.Exercises)
                 .WithOne(e => e.TargetMuscle)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
             modelBuilder.Entity<Equipment>()
                 .HasMany(e => e.Exercises)
                 .WithOne(e => e.Equipment)

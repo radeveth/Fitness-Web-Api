@@ -1,4 +1,4 @@
-﻿namespace FitnessWebApi.Data.Seeder
+﻿namespace FitnessWebApi.Data.Seeder.ExercisesDataSeeding
 {
     public class ExerciseSeederModel
     {

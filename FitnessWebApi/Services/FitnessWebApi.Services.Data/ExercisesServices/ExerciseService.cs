@@ -37,6 +37,10 @@
 
         public IEnumerable<ExerciseViewModel> GetAllExercises()
         {
+            var a = this.dbContext.Exercises;
+
+            var c = a.Select(a => a.Name);
+
             return this.dbContext
                 .Exercises
                 .ProjectTo<ExerciseViewModel>(this.mapper.ConfigurationProvider);

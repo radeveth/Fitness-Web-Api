@@ -1,9 +1,4 @@
-using FitnessWebApi.Services.Data.BodyPartsServices;
-using FitnessWebApi.Services.Data.EquipmentsServices;
-using FitnessWebApi.Services.Data.ExercisesServices;
-using FitnessWebApi.Services.Data.TargetMusclesServices;
 using FitnessWebApi.Services.Mappings;
-using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +15,10 @@ builder.Services.AddAutoMapper(config =>
     config.AddProfile<BodyPartsProfile>();
 });
 
-builder.Services.AddTransient<IExerciseService, ExerciseService>();
-builder.Services.AddTransient<IBodyPartService, BodyPartService>();
-builder.Services.AddTransient<IEquipmentService, EquipmentService>();
-builder.Services.AddTransient<ITargetMuscleService, TargetMuscleService>();
+// builder.Services.AddTransient<IExerciseService, ExerciseService>();
+// builder.Services.AddTransient<IBodyPartService, BodyPartService>();
+// builder.Services.AddTransient<IEquipmentService, EquipmentService>();
+// builder.Services.AddTransient<ITargetMuscleService, TargetMuscleService>();
 
 var app = builder.Build();
 
