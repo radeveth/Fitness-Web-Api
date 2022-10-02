@@ -1,11 +1,14 @@
 ﻿namespace FitnessWebApi.Services.Data.EquipmentsServices
 {
-    using AutoMapper;
-    using FitnessWebApi.Data;
-    using FitnessWebApi.InputModels.Api;
-    using FitnessWebApi.ViewModels.Api;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using FitnessWebApi.Data;
+    using FitnessWebApi.Data.Models;
+    using FitnessWebApi.InputModels.Api;
+    using FitnessWebApi.ViewModels.Api;
+    using Microsoft.EntityFrameworkCore;
 
     public class EquipmentService : IEquipmentService
     {
@@ -18,25 +21,48 @@
             this.mapper = mapper;
         }
 
-
-        public async Task CreateAsync(EquipmentInputModel exerciseInputModel)
+        public async Task CreateAsync(EquipmentInputModel equipmentInputModel)
         {
-            throw new NotImplementedException();
+            Equipment equipment = new Equipment()
+            {
+                Type = equipmentInputModel.Type,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            await this.dbContext.AddRangeAsync(equipment);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            Equipment equipment = await this.dbContext.Equipments.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (equipment == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            equipment.IsDeleted = true;
+            equipment.DeletedOn = DateTime.UtcNow;
+
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public EquipmentViewModel GetViewModelById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<EquipmentViewModel> GetAllEqiupments()
+            => this.dbContext
+                .Equipments
+                .ProjectTo<EquipmentViewModel>(this.mapper.ConfigurationProvider);
 
-        public IEnumerable<EquipmentViewModel> GetAllExercises()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<EquipmentViewModel> GetEquipmentByGivenTypeAsync(string type)
+            => await this.dbContext
+                .Equipments
+                .ProjectTo<EquipmentViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(e => e.Type.ToLower() == type.ToLower());
+
+        public async Task<EquipmentViewModel> GetViewModelByIdAsync(int id)
+            => await this.dbContext
+                .Equipments
+                .ProjectTo<EquipmentViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(e => e.Id == id);
     }
 }

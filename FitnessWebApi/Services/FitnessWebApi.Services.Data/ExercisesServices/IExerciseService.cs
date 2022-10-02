@@ -7,7 +7,7 @@
     {
         Task CreateAsync(ExerciseInputModel exerciseInputModel);
 
-        ExerciseViewModel GetViewModelById(int id);
+        Task<ExerciseViewModel> GetViewModelByIdAsync(int id);
 
         IEnumerable<ExerciseViewModel> GetAllExercises();
 

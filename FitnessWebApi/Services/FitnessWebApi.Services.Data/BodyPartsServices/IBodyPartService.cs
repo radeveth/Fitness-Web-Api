@@ -5,12 +5,14 @@
 
     public interface IBodyPartService
     {
-        Task CreateAsync(BodyPartInputModel exerciseInputModel);
+        Task CreateAsync(BodyPartInputModel bodyPartInputModel);
 
-        BodyPartViewModel GetViewModelById(int id);
+        Task<BodyPartViewModel> GetViewModelByIdAsync(int id);
 
         IEnumerable<BodyPartViewModel> GetAllBodyParts();
 
         Task DeleteAsync(int id);
+
+        Task<BodyPartViewModel> GetBodyPartByGivenNameAsync(string name);
     }
 }

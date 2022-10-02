@@ -1,12 +1,14 @@
 ﻿namespace FitnessWebApi.Services.Data.BodyPartsServices
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using FitnessWebApi.Data;
+    using FitnessWebApi.Data.Models;
     using FitnessWebApi.InputModels.Api;
     using FitnessWebApi.ViewModels.Api;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
 
     public class BodyPartService : IBodyPartService
     {
@@ -19,26 +21,48 @@
             this.mapper = mapper;
         }
 
-        public async Task CreateAsync(BodyPartInputModel exerciseInputModel)
+        public async Task CreateAsync(BodyPartInputModel bodyPartInputModel)
         {
-            throw new NotImplementedException();
+            BodyPart bodyPart = new BodyPart()
+            {
+                Name = bodyPartInputModel.Name,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            await this.dbContext.BodyParts.AddAsync(bodyPart);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            BodyPart bodyPart = await this.dbContext.BodyParts.FirstOrDefaultAsync(b => b.Id == id);
+
+            if (bodyPart == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            bodyPart.IsDeleted = true;
+            bodyPart.DeletedOn = DateTime.UtcNow;
+
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public BodyPartViewModel GetViewModelById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<BodyPartViewModel> GetViewModelByIdAsync(int id)
+            => await this.dbContext
+                .BodyParts
+                .ProjectTo<BodyPartViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(b => b.Id == id);
 
         public IEnumerable<BodyPartViewModel> GetAllBodyParts()
-        {
-            return this.dbContext
+            => this.dbContext
                 .BodyParts
                 .ProjectTo<BodyPartViewModel>(this.mapper.ConfigurationProvider);
-        }
+
+        public async Task<BodyPartViewModel> GetBodyPartByGivenNameAsync(string name)
+            => await this.dbContext
+                .BodyParts
+                .ProjectTo<BodyPartViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(b => b.Name.ToLower() == name.ToLower());
     }
 }

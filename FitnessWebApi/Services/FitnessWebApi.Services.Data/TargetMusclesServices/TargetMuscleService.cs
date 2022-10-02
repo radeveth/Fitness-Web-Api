@@ -1,11 +1,15 @@
 ﻿namespace FitnessWebApi.Services.Data.TargetMusclesServices
 {
-    using AutoMapper;
-    using FitnessWebApi.Data;
-    using FitnessWebApi.InputModels.Api;
-    using FitnessWebApi.ViewModels.Api;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using FitnessWebApi.Data;
+    using FitnessWebApi.Data.Models;
+    using FitnessWebApi.InputModels.Api;
+    using FitnessWebApi.ViewModels.Api;
+    using Microsoft.EntityFrameworkCore;
 
     public class TargetMuscleService : ITargetMuscleService
     {
@@ -18,24 +22,48 @@
             this.mapper = mapper;
         }
 
-        public async Task CreateAsync(TargetMuscleInputModel exerciseInputModel)
+        public async Task CreateAsync(TargetMuscleInputModel targetMuscleInputModel)
         {
-            throw new NotImplementedException();
+            TargetMuscle targetMuscle = new TargetMuscle()
+            {
+                Name = targetMuscleInputModel.Name,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            await this.dbContext.AddAsync(targetMuscle);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            TargetMuscle targetMuscle = await this.dbContext.TargetMuscles.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (targetMuscle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            targetMuscle.IsDeleted = true;
+            targetMuscle.DeletedOn = DateTime.UtcNow;
+
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public TargetMuscleViewModel GetViewModelById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<TargetMuscleViewModel> GetAllTargetMuscles()
+            => this.dbContext
+                .TargetMuscles
+                .ProjectTo<TargetMuscleViewModel>(this.mapper.ConfigurationProvider);
 
-        public IEnumerable<TargetMuscleViewModel> GetAllExercises()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TargetMuscleViewModel> GetTargetMuscleByGivenNameAsync(string name)
+            => await this.dbContext
+                .TargetMuscles
+                .ProjectTo<TargetMuscleViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(t => t.Name.ToLower() == name.ToLower());
+
+        public async Task<TargetMuscleViewModel> GetViewModelByIdAsync(int id)
+            => await this.dbContext
+                .TargetMuscles
+                .ProjectTo<TargetMuscleViewModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(t => t.Id == id);
     }
 }

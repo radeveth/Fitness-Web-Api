@@ -2,5 +2,6 @@
 {
     public class EquipmentInputModel
     {
+        public string Type { get; set; }
     }
 }

@@ -2,5 +2,6 @@
 {
     public class TargetMuscleInputModel
     {
+        public string Name { get; set; }
     }
 }

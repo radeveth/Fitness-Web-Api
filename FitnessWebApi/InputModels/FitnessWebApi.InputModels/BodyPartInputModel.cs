@@ -2,5 +2,6 @@
 {
     public class BodyPartInputModel
     {
+        public string Name { get; set; }
     }
 }

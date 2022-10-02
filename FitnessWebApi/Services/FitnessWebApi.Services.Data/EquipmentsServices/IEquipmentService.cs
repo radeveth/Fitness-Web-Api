@@ -5,12 +5,14 @@
 
     public interface IEquipmentService
     {
-        Task CreateAsync(EquipmentInputModel exerciseInputModel);
+        Task CreateAsync(EquipmentInputModel equipmentInputModel);
 
-        EquipmentViewModel GetViewModelById(int id);
+        Task<EquipmentViewModel> GetViewModelByIdAsync(int id);
 
-        IEnumerable<EquipmentViewModel> GetAllExercises();
+        IEnumerable<EquipmentViewModel> GetAllEqiupments();
 
         Task DeleteAsync(int id);
+
+        Task<EquipmentViewModel> GetEquipmentByGivenTypeAsync(string type);
     }
 }

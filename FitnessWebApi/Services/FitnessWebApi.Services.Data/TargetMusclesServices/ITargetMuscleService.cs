@@ -5,12 +5,14 @@
 
     public interface ITargetMuscleService
     {
-        Task CreateAsync(TargetMuscleInputModel exerciseInputModel);
+        Task CreateAsync(TargetMuscleInputModel targetMuscleInputModel);
 
-        TargetMuscleViewModel GetViewModelById(int id);
+        Task<TargetMuscleViewModel> GetViewModelByIdAsync(int id);
 
-        IEnumerable<TargetMuscleViewModel> GetAllExercises();
+        IEnumerable<TargetMuscleViewModel> GetAllTargetMuscles();
 
         Task DeleteAsync(int id);
+
+        Task<TargetMuscleViewModel> GetTargetMuscleByGivenNameAsync(string name);
     }
 }
