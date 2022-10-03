@@ -93,9 +93,28 @@
                 .ProjectTo<ExerciseViewModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(e => e.Id == id);
 
-        public IEnumerable<ExerciseViewModel> GetAllExercises()
-            => this.dbContext
+        public async Task<IEnumerable<ExerciseViewModel>> GetAllExercisesAsync(string? targetMuscle = null, string? equipment = null)
+        {
+            List<ExerciseViewModel> exercises = await this.dbContext
                 .Exercises
-                .ProjectTo<ExerciseViewModel>(this.mapper.ConfigurationProvider);
+                .ProjectTo<ExerciseViewModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            if (targetMuscle != null)
+            {
+                exercises = exercises
+                    .Where(e => e.TargetMuscleName.ToLower() == targetMuscle.ToLower())
+                    .ToList();
+            }
+
+            if (equipment != null)
+            {
+                exercises = exercises
+                    .Where(e => e.EquipmentType.ToLower() == equipment.ToLower())
+                    .ToList();
+            }
+
+            return exercises;
+        }
     }
 }

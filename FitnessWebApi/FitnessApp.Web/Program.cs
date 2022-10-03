@@ -6,6 +6,7 @@ using FitnessWebApi.Services.Data.TargetMusclesServices;
 using FitnessWebApi.Services.Mappings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static System.Collections.Specialized.BitVector32;
 
 public class Program
 {
@@ -36,6 +37,20 @@ public class Program
         builder.Services.AddTransient<IEquipmentService, EquipmentService>();
         builder.Services.AddTransient<ITargetMuscleService, TargetMuscleService>();
 
+        // Named Policy
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(
+                name: "CORSPlolicy",
+                builder =>
+                {
+                    builder
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithOrigins("https://localhost:7000", "https://appname.azurewebsites.net");
+                });
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -52,6 +67,8 @@ public class Program
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
+        app.UseCors("CorsPolicy");
 
         app.UseRouting();
 

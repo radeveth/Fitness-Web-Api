@@ -1,4 +1,7 @@
-﻿@{
+﻿@using FitnessWebApi.ViewModels.Web;
+@model HomeViewModel;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,4 +10,50 @@
         <h1 class="mt-4">Welcome to Fitness Web Api!</h1>
     </center>
     <hr class="offset-1 col-10">
+
+    <div class="container">
+        <div class="container">
+            <h2 class="text-center mt-5">Exercises Api:</h2>
+            <hr class="offset-1 col-10">
+            @foreach (var exerciseMethod in Model.ExercisesMethods)
+            {
+                <div class="offset-1 col-10">
+                    <h4 style="margin-left: 20px">- @exerciseMethod.Method - @exerciseMethod.Route</h4>
+                </div>
+            }
+        </div>
+
+        <div class="container">
+            <h2 class="text-center mt-5">Body Parts Api:</h2>
+            <hr class="offset-1 col-10">
+            @foreach (var bodyPartMethod in Model.BodyPartsMethods)
+            {
+                <div class="offset-1 col-10">
+                    <h4 style="margin-left: 20px">- @bodyPartMethod.Method - @bodyPartMethod.Route</h4>
+                </div>
+            }
+        </div>
+
+        <div class="container">
+            <h2 class="text-center mt-5">Equipments Api:</h2>
+            <hr class="offset-1 col-10">
+            @foreach (var equipmentMethod in Model.EquipmentsMethods)
+            {
+                <div class="offset-1 col-10">
+                    <h4 style="margin-left: 20px">- @equipmentMethod.Method - @equipmentMethod.Route</h4>
+                </div>
+            }
+        </div>
+
+        <div class="container">
+            <h2 class="text-center mt-5">Target Muscles Api:</h2>
+            <hr class="offset-1 col-10">
+            @foreach (var targetMuscleMethod in Model.TargetMusclesMethods)
+            {
+                <div class="offset-1 col-10">
+                    <h4 style="margin-left: 20px">- @targetMuscleMethod.Method - @targetMuscleMethod.Route</h4>
+                </div>
+            }
+        </div>
+    </div>
 </div>

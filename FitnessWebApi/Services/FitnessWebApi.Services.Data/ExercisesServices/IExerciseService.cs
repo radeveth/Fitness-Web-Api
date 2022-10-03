@@ -9,7 +9,7 @@
 
         Task<ExerciseViewModel> GetViewModelByIdAsync(int id);
 
-        IEnumerable<ExerciseViewModel> GetAllExercises();
+        Task<IEnumerable<ExerciseViewModel>> GetAllExercisesAsync(string? targetMuscle = null, string? equipment = null);
 
         Task DeleteAsync(int id);
     }

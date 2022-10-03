@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]/")]
     [ApiController]
     public class ExercisesController : ControllerBase
     {
@@ -18,13 +18,22 @@
         }
 
         [HttpGet]
-        public IEnumerable<ExerciseViewModel> All()
+        [ActionName("All")]
+        public async Task<IEnumerable<ExerciseViewModel>> All(string? targetMuscle = null, string? equipment = null)
         {
-            return this.exerciseService.GetAllExercises();
+            return await this.exerciseService.GetAllExercisesAsync(targetMuscle, equipment);
+        }
+
+        [HttpGet]
+        [ActionName("getExercise")]
+        public async Task<ExerciseViewModel> GetExerciseByIdAsync([FromQuery] int id)
+        {
+            return await this.exerciseService.GetViewModelByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateAsync(ExerciseInputModel exerciseInputModel)
+        [ActionName("Create")]
+        public async Task<ActionResult> CreateAsync([FromBody] ExerciseInputModel exerciseInputModel)
         {
             await this.exerciseService.CreateAsync(exerciseInputModel);
 
@@ -32,6 +41,7 @@
         }
 
         [HttpDelete]
+        [ActionName("Delete")]
         public async Task<ActionResult> DeleteAsync(int id)
         {
             try
