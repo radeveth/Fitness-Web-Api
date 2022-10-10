@@ -36,4 +36,10 @@
     <ProjectReference Include="..\ViewModels\FitnessWebApi.ViewModels.Web\FitnessWebApi.ViewModels.Web.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
 </Project>
